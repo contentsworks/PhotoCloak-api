@@ -1,9 +1,9 @@
-# Photobook API仕様 ver 1.2.5
+# PhotoCloak API仕様 ver 0.0.1
 
-Photobook APIの開発者向けのドキュメントです。
+PhotoCloak APIの開発者向けのドキュメントです。
 
 ## エンドポイント
-開発用と本番用が用意されています。詳しくはお問合せ下さい。
+本番になります。
 
 ---
 ## API一覧
