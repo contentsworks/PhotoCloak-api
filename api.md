@@ -145,18 +145,54 @@ HTTP ステータスコードとともに結果を返します。
 ### ***Method*** : POST
 ### ***Url*** : /api/cloaks/
 ### ***Request***
-* ci : クロークID
 * nm : クローク名
 * dc : 紹介分
+```
+{
+    "nm":"ネコの肉球",
+    "dc":"ネコの肉球専用のクロークです！"
+}
+```
+
+### ***Response***
+
+```
+{
+    "HttpStatus":"200"
+    "CloakId":"123456790"
+    "RedirectLogin":"0"
+}
+```
+* HttpStatus [int] : ステータスコード。
+* CloakId [int] : クロークを識別するID※クロークキーではありません。
+* RedirectLogin [bool] : 認証結果
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
+|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
+|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
+|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+
+---
+## フォトクローク・作成完了 API
+フォトクロークの作成完了を行います。
+クロークの各種設定を行います。
+
+### ***Method*** : POST
+### ***Url*** : /api/cloaks/
+### ***Request***
+* ci : クロークID
 * sc : 公開（0：パブリック／1：プライベート）
-* lk : 合言葉
-* tg : タグ(カンマ区切り)
+* lk : 合言葉※プライベートのみ
+* tg : タグ(カンマ区切り)※パブリックのみ
 * dl : ダウンロード可否（0：否／1：可）
 ```
 {
     "ci":"123456790",
-    "nm":"ネコの肉球",
-    "dc":"ネコの肉球専用のクロークです！",
     "sc":"0",
     "lk":"ドラえもん大好き",
     "tg":"ネコ,写真",
