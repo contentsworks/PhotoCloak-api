@@ -183,7 +183,7 @@ HTTP ステータスコードとともに結果を返します。
 クロークの各種設定を行います。
 
 ### ***Method*** : POST
-### ***Url*** : /api/cloaks/
+### ***Url*** : /api/cloaks/complete
 ### ***Request***
 * ci : クロークID
 * sc : 公開（0：パブリック／1：プライベート）
@@ -211,6 +211,111 @@ HTTP ステータスコードとともに結果を返します。
 ```
 * HttpStatus [int] : ステータスコード。
 * CloakId [int] : クロークを識別するID※クロークキーではありません。
+* RedirectLogin [bool] : 認証結果
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
+|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
+|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
+|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+
+---
+## フォトクローク・削除 API
+フォトクロークの削除を行います。
+
+### ***Method*** : POST
+### ***Url*** : /api/cloaks/delete
+### ***Request***
+* ci : クロークID
+```
+{
+    "ci":"123456790"
+}
+```
+
+### ***Response***
+
+```
+{
+    "HttpStatus":"200"
+    "RedirectLogin":"0"
+}
+```
+* HttpStatus [int] : ステータスコード。
+* RedirectLogin [bool] : 認証結果
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
+|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
+|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
+|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+
+---
+## フォトクローク・フォロー API
+フォトクロークのフォローを行います。
+
+### ***Method*** : POST
+### ***Url*** : /api/cloaks/addfollow
+### ***Request***
+* ci : クロークID
+```
+{
+    "ci":"123456790"
+}
+```
+
+### ***Response***
+
+```
+{
+    "HttpStatus":"200"
+    "RedirectLogin":"0"
+}
+```
+* HttpStatus [int] : ステータスコード。
+* RedirectLogin [bool] : 認証結果
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
+|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
+|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
+|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+
+---
+## フォトクローク・フォロー解除 API
+フォトクロークのフォロー解除を行います。
+
+### ***Method*** : POST
+### ***Url*** : /api/cloaks/delfollow
+### ***Request***
+* ci : クロークID
+```
+{
+    "ci":"123456790"
+}
+```
+
+### ***Response***
+
+```
+{
+    "HttpStatus":"200"
+    "RedirectLogin":"0"
+}
+```
+* HttpStatus [int] : ステータスコード。
 * RedirectLogin [bool] : 認証結果
 
 | ステータスコード | 意味|エラーコード|
