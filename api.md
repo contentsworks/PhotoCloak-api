@@ -138,6 +138,56 @@ HTTP ステータスコードとともに結果を返します。
  * moreInfo [string] : エラーの場所を示す詳細な情報
 
 ---
+## フォトクローク・新規作成 API
+フォトクロークの新規作成を行います。
+クローク名と紹介分を登録します。
+
+### ***Method*** : POST
+### ***Url*** : /api/cloaks/
+### ***Request***
+* ci : クロークID
+* nm : クローク名
+* dc : 紹介分
+* sc : 公開（0：パブリック／1：プライベート）
+* lk : 合言葉
+* tg : タグ(カンマ区切り)
+* dl : ダウンロード可否（0：否／1：可）
+```
+{
+    "ci":"123456790",
+    "nm":"ネコの肉球",
+    "dc":"ネコの肉球専用のクロークです！",
+    "sc":"0",
+    "lk":"ドラえもん大好き",
+    "tg":"ネコ,写真",
+    "dl":"1"
+}
+```
+
+### ***Response***
+
+```
+{
+    "HttpStatus":"200"
+    "CloakId":"123456790"
+    "RedirectLogin":"0"
+}
+```
+* HttpStatus [int] : ステータスコード。
+* CloakId [int] : クロークを識別するID※クロークキーではありません。
+* RedirectLogin [bool] : 認証結果
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
+|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
+|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
+|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+
+---
 ## 画像アップロード API
 画像のアップロードのみを行います。  
 エリアへの配置は「画像配置/更新 API」で行います。
