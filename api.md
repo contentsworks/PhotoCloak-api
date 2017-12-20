@@ -172,12 +172,7 @@ HTTP ステータスコードとともに結果を返します。
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
-|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
-|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
-|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## フォトクローク作成完了 API
@@ -195,9 +190,9 @@ HTTP ステータスコードとともに結果を返します。
 ```
 {
     "ci":"123456790",
-    "sc":"0",
+    "sc":"1",
     "lk":"ドラえもん大好き",
-    "tg":"ネコ,写真",
+    "tg":"",
     "dl":"1"
 }
 ```
@@ -218,12 +213,7 @@ HTTP ステータスコードとともに結果を返します。
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
-|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
-|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
-|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## フォトクローク削除 API
@@ -253,12 +243,7 @@ HTTP ステータスコードとともに結果を返します。
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
-|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
-|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
-|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## フォトクローク確認 API
@@ -295,15 +280,10 @@ HTTP ステータスコードとともに結果を返します。
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
-|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
-|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
-|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
-## フォトクローク・検索 API
+## フォトクローク検索 API
 フォトクロークの検索を行います。
 
 ### ***Method*** : POST
@@ -375,17 +355,11 @@ HTTP ステータスコードとともに結果を返します。
 }
 ```
 * HttpStatus [int] : ステータスコード。
-* Cloak [int] : 
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
-|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
-|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
-|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## フォトクローク取得 API
@@ -447,18 +421,11 @@ HTTP ステータスコードとともに結果を返します。
 }
 ```
 * HttpStatus [int] : ステータスコード。
-* CloakId [int] : クロークを識別するID※クロークキーではありません。
-* RedirectLogin [bool] : 認証結果
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
-|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
-|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
-|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## フォトクロークフォロー API
@@ -488,12 +455,7 @@ HTTP ステータスコードとともに結果を返します。
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
-|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
-|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
-|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## フォトクロークフォロー解除 API
@@ -523,25 +485,57 @@ HTTP ステータスコードとともに結果を返します。
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
-|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
-|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
-|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+
+
+---
+## 画像取得 API
+画像の取得を行います。  
+
+### ***Method*** : GET
+### ***Url*** : /api/photos
+### ***Request***
+* ci : クロークID
+* cd : クロークイメージID
+
+### ***Response***
+
+```
+{
+    "imageId":"2-158-4-528-20160209191142-277116579"
+}
+```
+* imageId [string] : アップロードした画像を識別するID
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+
+```
+【エラーの例】
+{
+    "errors": [
+        {
+            "errorCode": "unsupported_file",
+            "message": "ファイル形式が不明です。",
+            "moreInfo": "ご利用できる画像ファイル形式はjpeg（jpg）のみです。"
+        },...
+    ]
+}
+```
 
 ---
 ## 画像アップロード API
 画像のアップロードのみを行います。  
-エリアへの配置は「画像配置/更新 API」で行います。
 
 ### ***Method*** : POST
-### ***Url*** : /v1/{editKey}/images
+### ***Url*** : /api/photos
 ### ***Request***
-* editKey : 作品キー取得 APIにて発行したキーを指定してください。
+* ci : クロークID
 
 ### ***Request Body***
-アップロードする画像ファイルを含めてください。ファイルが複数ある場合は一つ目のみが適用されます。
+アップロードする画像ファイルを含めてください。
 ※最大画像サイズは20MB、対応するフォーマットはjpegのみです。
 
 ### ***Response***
@@ -556,12 +550,8 @@ HTTP ステータスコードとともに結果を返します。
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
-|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
-|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
-|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+
 ```
 【エラーの例】
 {
