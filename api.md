@@ -27,7 +27,7 @@ PhotoCloak APIの開発者向けのドキュメントです。
 
 ---
 ## 認証 API
-各種APIを利用するためには、OAuth2.0により規定された認可を行い事前にアクセストークンを取得します。  
+認証を有する各種APIを利用するためには、OAuth2.0により規定された認可を行い事前にアクセストークンを取得します。  
 API呼び出しの際、Authorizationヘッダーでアクセストークンを送信して認証します。
 
 ### 事前に必要なもの
@@ -86,10 +86,11 @@ grant_typeとusername、passwordを指定してください。
 
 ### APIへのアクセス
 入手したアクセストークンを使用して、認証を有する各種APIにアクセスすることができます。
-アクセストークンの指定は共通で、APIを呼び出す際に、 Authorizationリクエストヘッダにアクセストークンを指定します。  
-Authorization:に「"Bearer " + access_token」を設定します。  
+アクセストークンの指定は共通で、APIを呼び出す際に、 Authorizationリクエストヘッダにアクセストークンを指定します。 
+Authorization:に「"Bearer " + access_token」を設定します。
 ※　トークンの有効期限は、1時間です。  
 ※　通信する経路は全て暗号化するため、httpsを利用します。
+※　認証が不要な各種APIｈへのアクセスにはアクセストークンは不要です。
 ```
 Authorization: Bearer tc8lOyNW1Vsqx1EwXNUML6YdFJptCLblKR_sKfU2ClkikNpK3K9mK6s
 ```
