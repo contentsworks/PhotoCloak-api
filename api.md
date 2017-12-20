@@ -12,13 +12,13 @@ PhotoCloak APIの開発者向けのドキュメントです。
 
 ### フォトクローク
 * [フォトクローク新規作成 API](#フォトクローク新規作成-api)
-* [フォトクローク・作成完了 API](#フォトクローク・作成完了-api)
-* [フォトクローク・削除 API](#フォトクローク・削除-api)
-* [フォトクローク・確認 API](#フォトクローク・確認-api)
-* [フォトクローク・検索 API](#フォトクローク・検索-api)
-* [フォトクローク・取得 API](#フォトクローク・取得-api)
-* [フォトクローク・フォロー追加 API](#フォトクローク・フォロー追加-api)
-* [フォトクローク・フォロー解除 API](#フォトクローク・フォロー解除-api)
+* [フォトクローク作成完了 API](#フォトクローク作成完了-api)
+* [フォトクローク削除 API](#フォトクローク削除-api)
+* [フォトクローク確認 API](#フォトクローク確認-api)
+* [フォトクローク検索 API](#フォトクローク検索-api)
+* [フォトクローク取得 API](#フォトクローク取得-api)
+* [フォトクロークフォロー追加 API](#フォトクロークフォロー追加-api)
+* [フォトクロークフォロー解除 API](#フォトクロークフォロー解除-api)
 
 ### 画像
 * [画像取得 API](#画像取得-api)
@@ -180,7 +180,7 @@ HTTP ステータスコードとともに結果を返します。
 |415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
 
 ---
-## フォトクローク・作成完了 API
+## フォトクローク作成完了 API
 フォトクロークの作成完了を行います。
 クロークの各種設定を行います。
 
@@ -226,7 +226,7 @@ HTTP ステータスコードとともに結果を返します。
 |415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
 
 ---
-## フォトクローク・削除 API
+## フォトクローク削除 API
 フォトクロークの削除を行います。
 
 ### ***Method*** : POST
@@ -261,7 +261,7 @@ HTTP ステータスコードとともに結果を返します。
 |415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
 
 ---
-## フォトクローク・検索 API
+## フォトクローク確認 API
 フォトクロークの検索を行います。
 
 ### ***Method*** : POST
@@ -269,16 +269,10 @@ HTTP ステータスコードとともに結果を返します。
 ### ***Request***
 * pd : クロークキー・先頭辞
 * no : クロークキー・番号
-* lk : 合言葉
-* tg : タグ(カンマ区切り)
-* s : ソート（limit：タイムリミット／view：閲覧数／new：新着／name：名前）
 ```
 {
     "pd":"松",
     "no":"11",
-    "lk":"ドラえもん大好き",
-    "tg":"ネコ,写真",
-    "s":"new"
 }
 ```
 
@@ -287,53 +281,15 @@ HTTP ステータスコードとともに結果を返します。
 ```
 {
     "HttpStatus":"200"
-    "Cloak":[]
-   {
-       "CloakId":"123456790",
-       "MemberID":"123456790",
-       "Name":"123456790",
-       "PrefixCode":"松",
-       "CloakNo":"11",
-       "Status":"0",
-       "WorkSpaceNo":"0",
-       "CreateDatetime":"0",
-       "UpdateDatetime":"0",
-       "CloakSetting":
-      {
-          "CloakID":"0",
-          "ScopeType":"0",
-          "Description":,
-          "CanDownload":,
-          "CanUpload":,
-          "IsAutoExtensionDate":
-      }
-       "Images":[]
-      {
-          "CloakImageID":"0"
-          "CloakID":"0"
-          "CloakSetting":
-          "MyPhotoImageID":"0"
-          "Status":"0"
-          "ExpirationDatetime":"0"
-          "MemberID":"0"
-          "Comment":
-          "ImageName":"0"
-          "ViewCount":"0"
-          "Rotate":
-      }
-       "Tags":[]
-      {
-          "CloakID":"0",
-          "Tag":"0"
-      },
-      {
-          "CloakID":"0",
-          "Tag":"0"
-      }
+    "ScopeType":"0",
+    "CloakID":"0",
+    "Name":"123456790",
 }
 ```
 * HttpStatus [int] : ステータスコード。
-* CloakId [int] : クロークを識別するID※クロークキーではありません。
+* ScopeType : 公開（0：パブリック／1：プライベート）
+* CloakID [int] : クロークを識別するID※クロークキーではありません。
+* Name : クローク名
 * RedirectLogin [bool] : 認証結果
 
 | ステータスコード | 意味|エラーコード|
@@ -419,8 +375,7 @@ HTTP ステータスコードとともに結果を返します。
 }
 ```
 * HttpStatus [int] : ステータスコード。
-* CloakId [int] : クロークを識別するID※クロークキーではありません。
-* RedirectLogin [bool] : 認証結果
+* Cloak [int] : クロークを識別するID※クロークキーではありません。
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
@@ -433,7 +388,7 @@ HTTP ステータスコードとともに結果を返します。
 |415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
 
 ---
-## フォトクローク・取得 API
+## フォトクローク取得 API
 フォトクロークの取得を行います。
 
 ### ***Method*** : GET
@@ -506,7 +461,7 @@ HTTP ステータスコードとともに結果を返します。
 |415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
 
 ---
-## フォトクローク・フォロー API
+## フォトクロークフォロー API
 フォトクロークのフォローを行います。
 
 ### ***Method*** : POST
@@ -541,7 +496,7 @@ HTTP ステータスコードとともに結果を返します。
 |415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
 
 ---
-## フォトクローク・フォロー解除 API
+## フォトクロークフォロー解除 API
 フォトクロークのフォロー解除を行います。
 
 ### ***Method*** : POST
