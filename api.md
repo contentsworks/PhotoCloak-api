@@ -11,9 +11,10 @@ PhotoCloak APIの開発者向けのドキュメントです。
 * [認証 API](#認証-api)
 
 ### フォトクローク
-* [フォトクローク・新規作成 API](#フォトクローク・新規作成-api)
+* [フォトクローク新規作成 API](#フォトクローク新規作成-api)
 * [フォトクローク・作成完了 API](#フォトクローク・作成完了-api)
 * [フォトクローク・削除 API](#フォトクローク・削除-api)
+* [フォトクローク・確認 API](#フォトクローク・確認-api)
 * [フォトクローク・検索 API](#フォトクローク・検索-api)
 * [フォトクローク・取得 API](#フォトクローク・取得-api)
 * [フォトクローク・フォロー追加 API](#フォトクローク・フォロー追加-api)
@@ -139,7 +140,7 @@ HTTP ステータスコードとともに結果を返します。
  * moreInfo [string] : エラーの場所を示す詳細な情報
 
 ---
-## フォトクローク・新規作成 API
+## フォトクローク新規作成 API
 フォトクロークの新規作成を行います。
 クローク名と紹介分を登録します。
 
@@ -247,6 +248,92 @@ HTTP ステータスコードとともに結果を返します。
 }
 ```
 * HttpStatus [int] : ステータスコード。
+* RedirectLogin [bool] : 認証結果
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。|notacceptable_editkey|
+|406 (Not Acceptable)|指定されたEditKeyが見つかりません。(注文済の作品は編集できません))|notacceptable_editkey|
+|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
+|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
+|415 (Unsupported Media Type)|画像ファイルを選択してください。|unsupported_file|
+
+---
+## フォトクローク・検索 API
+フォトクロークの検索を行います。
+
+### ***Method*** : POST
+### ***Url*** : /api/cloaks/complete
+### ***Request***
+* pd : クロークキー・先頭辞
+* no : クロークキー・番号
+* lk : 合言葉
+* tg : タグ(カンマ区切り)
+* s : ソート（limit：タイムリミット／view：閲覧数／new：新着／name：名前）
+```
+{
+    "pd":"松",
+    "no":"11",
+    "lk":"ドラえもん大好き",
+    "tg":"ネコ,写真",
+    "s":"new"
+}
+```
+
+### ***Response***
+
+```
+{
+    "HttpStatus":"200"
+    "Cloak":[]
+   {
+       "CloakId":"123456790",
+       "MemberID":"123456790",
+       "Name":"123456790",
+       "PrefixCode":"松",
+       "CloakNo":"11",
+       "Status":"0",
+       "WorkSpaceNo":"0",
+       "CreateDatetime":"0",
+       "UpdateDatetime":"0",
+       "CloakSetting":
+      {
+          "CloakID":"0",
+          "ScopeType":"0",
+          "Description":,
+          "CanDownload":,
+          "CanUpload":,
+          "IsAutoExtensionDate":
+      }
+       "Images":[]
+      {
+          "CloakImageID":"0"
+          "CloakID":"0"
+          "CloakSetting":
+          "MyPhotoImageID":"0"
+          "Status":"0"
+          "ExpirationDatetime":"0"
+          "MemberID":"0"
+          "Comment":
+          "ImageName":"0"
+          "ViewCount":"0"
+          "Rotate":
+      }
+       "Tags":[]
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      },
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      }
+}
+```
+* HttpStatus [int] : ステータスコード。
+* CloakId [int] : クロークを識別するID※クロークキーではありません。
 * RedirectLogin [bool] : 認証結果
 
 | ステータスコード | 意味|エラーコード|
