@@ -39,7 +39,7 @@ client_idとclient_secretの取得には、Developersへのご利用登録と利
 弊社APIサービスサポート窓口へご連絡ください。
 
 ### 認可とアクセストークンの入手
-クライアントプログラムは、事前に発行されたclient_id、client_secretを利用してアクセストークンを入手します。
+クライアントプログラムは、事前に発行されたclient_id、client_secretとusername、passwordを利用してアクセストークンを入手します。
 #### ***Method*** : POST
 #### ***Url*** : /oauth2/token
 #### ***Request Header***
@@ -50,12 +50,12 @@ Content-Type: application/x-www-form-urlencoded
 ```
 #### ***x-www-form-urlencoded***
 下記パラメータをリクエストボディにapplication/x-www-form-urlencoded形式で指定します。
-##### ***username+passwordでの認証の場合***
-API側では、作成ユーザーをusernameにて識別します。 トークンを取得する時は同一のusername、passwordを使用してください。
+##### ***username+password***
+grant_typeとusername、passwordを指定してください。
 
 * grant_type [string]　: password固定
-* username [string]　: client_id内で一意となる作成ユーザー識別文字列
-* password(任意) [string]　: 作成ユーザーのパスワード。設定することを推奨します
+* username [string]　: ユーザーID（Email）
+* password [string]　: パスワード
 
 #### ***Response (OK)***
 ```
@@ -85,7 +85,7 @@ API側では、作成ユーザーをusernameにて識別します。 トーク�
 |unsupported_grant_type|グラントタイプが認可サーバーによってサポートされていない|
 
 ### APIへのアクセス
-入手したアクセストークンを使用して、各種APIにアクセスすることができます。  
+入手したアクセストークンを使用して、認証を有する各種APIにアクセスすることができます。
 アクセストークンの指定は共通で、APIを呼び出す際に、 Authorizationリクエストヘッダにアクセストークンを指定します。  
 Authorization:に「"Bearer " + access_token」を設定します。  
 ※　トークンの有効期限は、1時間です。  
