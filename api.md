@@ -292,9 +292,9 @@ HTTP ステータスコードとともに結果を返します。
 * Status [int] : ステータス
 * WorkSpaceNo [int] : ワークスペース番号
 * CreateDatetime [dateTime] : 作成日時
-* UpdateDatetime [dateTime] : 往診日時
+* UpdateDatetime [dateTime] : 更新日時
 * ScopeType [int] : 公開（0：パブリック／1：プライベート）
-* Description [int] : 紹介分
+* Description [int] : 紹介文
 * CanDownload [int] : ダウンロード可否（0：否／1：可）
 * CanUpload [int] : アップロード可否（0：否／1：可）
 * IsAutoExtensionDate [int] : 自動延長（0：無／1：有）
@@ -378,9 +378,9 @@ HTTP ステータスコードとともに結果を返します。
 * Status [int] : ステータス
 * WorkSpaceNo [int] : ワークスペース番号
 * CreateDatetime [dateTime] : 作成日時
-* UpdateDatetime [dateTime] : 往診日時
+* UpdateDatetime [dateTime] : 更新日時
 * ScopeType [int] : 公開（0：パブリック／1：プライベート）
-* Description [int] : 紹介分
+* Description [int] : 紹介文
 * CanDownload [int] : ダウンロード可否（0：否／1：可）
 * CanUpload [int] : アップロード可否（0：否／1：可）
 * IsAutoExtensionDate [int] : 自動延長（0：無／1：有）
@@ -465,14 +465,6 @@ HTTP ステータスコードとともに結果を返します。
 ※最大画像サイズは20MB、対応するフォーマットはjpegのみです。
 
 ### ***Response***
-
-```
-{
-    "imageId":"2-158-4-528-20160209191142-277116579"
-}
-```
-* imageId [string] : アップロードした画像を識別するID
-
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
