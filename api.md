@@ -120,25 +120,6 @@ HTTP ステータスコードとともに結果を返します。
 |400～|エラー|
 |500～|サーバ内部エラー。処理中に例外が発生。こちらのエラーの場合はお問い合わせください。|
 
-### ***レスポンスボディ***
-エラーの場合、詳細がわかるようにレスポンスボディを返します。
-```
-　エラーの場合:
-　{
-　　"errors": [
-        {
-            "errorCode": "area_overflow",
-            "message": "エリアでオバーフローが発生しました",
-            "moreInfo": "page=7,areaID=TEXT01,orverString=です。"
-        },...
-    ]
-　}
-```
-* errors : エラーのリスト
- * errorCode [string] : エラーコード
- * message [string] : エラーメッセージ
- * moreInfo [string] : エラーの場所を示す詳細な情報
-
 ---
 ## フォトクローク新規作成 API
 フォトクロークの新規作成を行います。
@@ -160,19 +141,16 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "HttpStatus":"200"
     "CloakId":"123456790"
-    "RedirectLogin":"0"
 }
 ```
-* HttpStatus [int] : ステータスコード。
 * CloakId [int] : クロークを識別するID※クロークキーではありません。
-* RedirectLogin [bool] : 認証結果
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+|401 (Unauthorized)|認証が不正です|*****_*****|
 
 ---
 ## フォトクローク作成完了 API
@@ -201,19 +179,16 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "HttpStatus":"200"
     "CloakId":"123456790"
-    "RedirectLogin":"0"
 }
 ```
-* HttpStatus [int] : ステータスコード。
 * CloakId [int] : クロークを識別するID※クロークキーではありません。
-* RedirectLogin [bool] : 認証結果
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+|401 (Unauthorized)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## フォトクローク削除 API
@@ -231,19 +206,12 @@ HTTP ステータスコードとともに結果を返します。
 
 ### ***Response***
 
-```
-{
-    "HttpStatus":"200"
-    "RedirectLogin":"0"
-}
-```
-* HttpStatus [int] : ステータスコード。
-* RedirectLogin [bool] : 認証結果
-
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+|401 (Unauthorized)|〇〇〇〇〇が●●●●●です|*****_*****|
+|406 (Not Acceptable)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## フォトクローク確認 API
@@ -265,17 +233,14 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "HttpStatus":"200"
-    "ScopeType":"0",
+    "ScopeType":"0",
     "CloakID":"0",
     "Name":"123456790",
 }
 ```
-* HttpStatus [int] : ステータスコード。
 * ScopeType : 公開（0：パブリック／1：プライベート）
 * CloakID [int] : クロークを識別するID※クロークキーではありません。
 * Name : クローク名
-* RedirectLogin [bool] : 認証結果
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
@@ -308,8 +273,7 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "HttpStatus":"200"
-    "Cloak":[]
+    "Cloak":[]
    {
        "CloakId":"123456790",
        "MemberID":"123456790",
@@ -355,6 +319,28 @@ HTTP ステータスコードとともに結果を返します。
 }
 ```
 * HttpStatus [int] : ステータスコード。
+* CloakId [int] : クロークID
+* MemberID [int] : 会員ID
+* Name [string] : クローク名
+* PrefixCode [string] : クロークキー・先頭辞
+* CloakNo [int] : クロークキー・番号
+* Status [int] : ステータス
+* WorkSpaceNo [int] : ワークスペース番号
+* CreateDatetime [dateTime] : 作成日時
+* UpdateDatetime [dateTime] : 往診日時
+* ScopeType [int] : 公開（0：パブリック／1：プライベート）
+* Description [int] : 紹介分
+* CanDownload [int] : ダウンロード可否（0：否／1：可）
+* CanUpload [int] : アップロード可否（0：否／1：可）
+* IsAutoExtensionDate [int] : 自動延長（0：無／1：有）
+* CloakImageID [int] : クロークイメージID
+* MyPhotoImageID [int] : マイフォトイメージID
+* ExpirationDatetime [dateTime] : 有効期限
+* Comment [string] : コメント
+* ImageName [string] : イメージ名
+* ViewCount [int] : 閲覧数
+* Rotate [int] : 画像向き
+* Tag [int] : タグ
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
@@ -374,7 +360,6 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "HttpStatus":"200"
     "Cloak":
    {
        "CloakId":"123456790",
@@ -420,7 +405,28 @@ HTTP ステータスコードとともに結果を返します。
       }
 }
 ```
-* HttpStatus [int] : ステータスコード。
+* CloakId [int] : クロークID
+* MemberID [int] : 会員ID
+* Name [string] : クローク名
+* PrefixCode [string] : クロークキー・先頭辞
+* CloakNo [int] : クロークキー・番号
+* Status [int] : ステータス
+* WorkSpaceNo [int] : ワークスペース番号
+* CreateDatetime [dateTime] : 作成日時
+* UpdateDatetime [dateTime] : 往診日時
+* ScopeType [int] : 公開（0：パブリック／1：プライベート）
+* Description [int] : 紹介分
+* CanDownload [int] : ダウンロード可否（0：否／1：可）
+* CanUpload [int] : アップロード可否（0：否／1：可）
+* IsAutoExtensionDate [int] : 自動延長（0：無／1：有）
+* CloakImageID [int] : クロークイメージID
+* MyPhotoImageID [int] : マイフォトイメージID
+* ExpirationDatetime [dateTime] : 有効期限
+* Comment [string] : コメント
+* ImageName [string] : イメージ名
+* ViewCount [int] : 閲覧数
+* Rotate [int] : 画像向き
+* Tag [int] : タグ
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
@@ -443,19 +449,12 @@ HTTP ステータスコードとともに結果を返します。
 
 ### ***Response***
 
-```
-{
-    "HttpStatus":"200"
-    "RedirectLogin":"0"
-}
-```
-* HttpStatus [int] : ステータスコード。
-* RedirectLogin [bool] : 認証結果
-
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+|401 (Unauthorized)|〇〇〇〇〇が●●●●●です|*****_*****|
+|406 (Not Acceptable)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## フォトクロークフォロー解除 API
@@ -473,20 +472,12 @@ HTTP ステータスコードとともに結果を返します。
 
 ### ***Response***
 
-```
-{
-    "HttpStatus":"200"
-    "RedirectLogin":"0"
-}
-```
-* HttpStatus [int] : ステータスコード。
-* RedirectLogin [bool] : 認証結果
-
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
-
+|401 (Unauthorized)|〇〇〇〇〇が●●●●●です|*****_*****|
+|406 (Not Acceptable)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## 画像取得 API
@@ -506,19 +497,6 @@ HTTP ステータスコードとともに結果を返します。
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
-
-```
-【エラーの例】
-{
-    "errors": [
-        {
-            "errorCode": "unsupported_file",
-            "message": "ファイル形式が不明です。",
-            "moreInfo": "ご利用できる画像ファイル形式はjpeg（jpg）のみです。"
-        },...
-    ]
-}
-```
 
 ---
 ## 画像アップロード API
@@ -546,269 +524,51 @@ HTTP ステータスコードとともに結果を返します。
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
-
-```
-【エラーの例】
-{
-    "errors": [
-        {
-            "errorCode": "unsupported_file",
-            "message": "ファイル形式が不明です。",
-            "moreInfo": "ご利用できる画像ファイル形式はjpeg（jpg）のみです。"
-        },...
-    ]
-}
-```
+|401 (Unauthorized)|〇〇〇〇〇が●●●●●です|*****_*****|
+|406 (Not Acceptable)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
-## アップロード済画像一覧取得 API
+## 画像ダウンロード取得 API
 ### ***Method*** : GET
-### ***Url*** : /v1/{editKey}/images/
+### ***Url*** : /api/photos/export
 ### ***QueryString***
-* order : 画像のソート順を指定してください。
- + page : ページ(＆エリア)順にソート
- + upload(defalut) : アップロード順にソート
-* detail : 結果の返却方法を指定してください。
- + true : 詳細モード
- + false(default) : 簡略モード
-* filter : 返される画像の種類にフィルターをかけます。
- + user : ユーザーによってアップされた画像のみレスポンスに含まれます。
- + 指定なし(default) : 使用しているすべての画像をレスポンスに含めます。  
- ※固定で配置されている画像もレスポンスに含まれます。
+* ci : クロークID
+* cd : クロークイメージID
 
 ### ***Request***
-* editKey : 作品キー取得 APIにて発行したキーを指定してください。
+* ci : クロークID
+* cd : クロークイメージID
 
 ### ***Response***
-#### 詳細モード
-```
-{
-	"images":[
-    	{
-        	"imageId":"2-158-4-528-20160209191142-277116579",
-        	"page": "0",
-        	"areaId": "PHOTO01",
-        	"width": "1024"
-        	"height": "768"
-        	"rotate": "90"
-        },
-        {
-        	"imageId":"2-158-4-528-20160201456546-678855441",
-        	"page": "",
-        	"areaId": "",
-        	"width": ""
-        	"height": ""
-        	"rotate": ""
-        },...
-    ]
-}
-
-```
-※未配置画像の場合は、"page""areaId""width""height""rotate"は空となる。
-* imageId [string]: アップロードした画像を識別する画像ID。
-* page [int]: ページ番号。
-* areaId [string]: 配置されているイメージエリアのID。
-* width  [int]: 画像の幅(px)。
-* height [int]: 画像の高さ(px)。
-* rotate [int]: 画像の回転角度。
-
-#### 簡略モード
-```
-{
-	"images":[
-    	{
-        	"imageId":"2-158-4-528-20160209191142-277116579"
-        },
-        {
-        	"imageId":"2-158-4-528-20160201456546-678855441"
-        },...
-    ]
-}
-
-```
-* imageId [string]: アップロードした画像を識別する画像ID。
+クロークイメージIDで指定された画像(jpg)データを返します(バイナリ形式)。
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|406 (Not Acceptable)|指定されたeditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|指定されたorderが不正です。|notacceptable_order|
-|404 (Not Found)|ファイルが存在しません。|notfound_file|
-```
-【エラーの例】
-{
-    "errors": [
-        {
-            "errorCode": "notacceptable_editkey",
-            "message": "指定されたeditKeyが見つかりません。",
-            "moreInfo": "editKey:123456789"
-        },...
-    ]
-}
-```
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+|401 (Unauthorized)|〇〇〇〇〇が●●●●●です|*****_*****|
+|404 (Not Found)|〇〇〇〇〇が●●●●●です|*****_*****|
+|406 (Not Acceptable)|〇〇〇〇〇が●●●●●です|*****_*****|
+
 ---
-## アップロード済画像取得 API
-### ***Method*** : GET
-### ***Url*** : /v1/{editKey}/images/{imageId}
-### ***Request***
-* editKey : 作品キー取得 APIにて発行したキーを指定してください。
-* imageId : アップロードした画像を識別する画像ID。
-
-### ***Response***
-imageIdで指定されたアップロード済画像(jpg)データを返します(バイナリ形式)。
-
-
-| ステータスコード | 意味|エラーコード|
-|:-----------|:------------|:------------|
-|200 (OK)|成功|-|
-|404 (Not Found)|ファイルが存在しません。|notfound_file|
-|406 (Not Acceptable)|指定されたeditKeyが見つかりません。|notacceptable_editkey|
-```
-【エラーの例】
-{
-    "errors": [
-        {
-            "errorCode": "notfound_file",
-            "message": "ファイルが存在しません。",
-            "moreInfo": "imageId:2-158-4-528-20160209191142-277116579"
-        },...
-    ]
-}
-```
----
-## アップロード済画像削除 API
+## 画像削除 API
 ### ***Method*** : POST
-### ***Header*** : X-HTTP-Method-Override=DELETE
-### ***Url*** : /v1/{editKey}/images/{imageId}
+### ***Url*** : /api/photos/delete
 ### ***Request***
-* editKey : 作品キー取得 APIにて発行したキーを指定してください。
-* imageId : アップロードした画像を識別する画像ID。
-
-### ***Response***
-imageIdで指定されたアップロード済画像(jpg)データを削除します。
-使用済みの画像は指定できません。
-
-
-| ステータスコード | 意味|エラーコード|
-|:-----------|:------------|:------------|
-|200 (OK)|成功|-|
-|404 (Not Found)|ファイルが存在しません。|notfound_file|
-|406 (Not Acceptable)|指定されたeditKeyが見つかりません。|notacceptable_editkey|
-|406 (Not Acceptable)|使用済みの画像は指定できません。|notacceptable_imageid|
-
+* ci : クロークID
+* cd : クロークイメージID
 ```
-【エラーの例】
 {
-    "errors": [
-        {
-            "errorCode": "notfound_file",
-            "message": "ファイルが存在しません。",
-            "moreInfo": "imageId:2-158-4-528-20160209191142-277116579"
-        },...
-    ]
+    "ci":"123456790",
+    "cd":"123456790",
 }
 ```
-
----
-## アップロード画像取得 API
-### ***Method*** : GET
-### ***Url*** : /v1/{editKey}/images/{pageNo}/{areaID}
-### ***QueryString***
-* h : 横幅を指定してください。
-* w : 高さを指定してください。
-※hかwのどちらかが指定した場合は、イメージの比率で拡縮された画像を返します。
-
-### ***Request***
-* editKey : 作品キー取得 APIにて発行したキーを指定してください。
-* pageNo : ページ番号を指定してください。
-* areaID : 取得したいイメージエリアのIDを指定してください。
-
-### ***Response***
-* image : アップロードした画像(jpg)。
-
-| ステータスコード | 意味|エラーコード|
-|:-----------|:------------|:------------|
-|200 (OK)|成功|-|
-|404 (Not Found)|存在しないページが指定されました。|notfound_page|
-|404 (Not Found)|存在しないエリアが指定されました。|notfound_area|
-|404 (Not Found)|ファイルが存在しません。|notfound_file|
-
----
-## 画像アップロード取消 API
-### ***Method*** : POST
-### ***Header*** : X-HTTP-Method-Override=DELETE
-### ***Url*** : /v1/{editKey}/images/{pageNo}/{areaID}
-### ***Request***
-* editKey : 作品キー取得 APIにて発行したキーを指定してください。
-* pageNo : ページ番号を指定してください。
-* areaID : 取得したいイメージエリアのIDを指定してください。
 
 ### ***Response***
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
-|404 (Not Found)|存在しないページが指定されました。|notfound_page|
-|404 (Not Found)|存在しないエリアが指定されました。|notfound_area|
-|404 (Not Found)|ファイルが存在しません。|notfound_file|
-
-```
-【エラーの例】
-{
-    "errors": [
-        {
-            "errorCode": "notfound_file",
-            "message": "ファイルが存在しません。",
-            "moreInfo": "page=7,areaID=PHOTO01"
-        },...
-    ]
-}
-```
-
----
-## 画像アップロード/更新 API
-画像をアップロードし、指定したエリアに配置します。  
-「画像配置/更新 API」で後から別のエリアに配置することも可能です。
-
-### ***Method*** : POST
-### ***Header*** : X-HTTP-Method-Override=PUT
-### ***Url*** : /v1/{editKey}/images/{pageNo}/{areaID}
-### ***Request***
-* editKey : 作品キー取得 APIにて発行したキーを指定してください。
-* pageNo : ページ番号を指定してください。
-* areaID : 取得したいイメージエリアのIDを指定してください。
-
-### ***Request Body***
-アップロードする画像ファイルを含めてください。ファイルが複数ある場合は一つ目のみが適用されます。
-※存在しない場合は、エリアに配置された画像ファイルが削除されます。  
-※最大画像サイズは20MB、対応するフォーマットはjpegのみです。
-
-### ***Response***
-```
-{
-    "imageId":"2-158-4-528-20160209191142-277116579"
-}
-```
-* imageId [string] : アップロードした画像を識別するID
-
-| ステータスコード | 意味|エラーコード|
-|:-----------|:------------|:------------|
-|200 (OK)|成功|-|
-|400 (Bad Request)|画像を読み込めませんでした。画像が壊れているか、画像に対応しておりません。|invalid_file|
-|404 (Not Found)|存在しないページが指定されました。|notfound_page|
-|404 (Not Found)|存在しないエリアが指定されました。|notfound_area|
-|413 (Request Entity Too Large)|ファイルサイズが大きすぎます。|toolarge_file|
-|415 (Unsupported Media Type)|ファイル形式が不明です。|unsupported_file|
-|416 (Requested Range Not Satisfiable)|ファイルの幅が小さすぎます。|tooshort_width|
-|416 (Requested Range Not Satisfiable)|ファイルの高さが小さすぎます。|tooshort_height|
-```
-【エラーの例】
-{
-    "errors": [
-        {
-            "errorCode": "unsupported_file",
-            "message": "ファイル形式が不明です。",
-            "moreInfo": "ご利用できる画像ファイル形式はjpeg（jpg）のみです。"
-        },...
-    ]
-}
-```
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+|401 (Unauthorized)|〇〇〇〇〇が●●●●●です|*****_*****|
+|404 (Not Found)|〇〇〇〇〇が●●●●●です|*****_*****|
+|406 (Not Acceptable)|〇〇〇〇〇が●●●●●です|*****_*****|
