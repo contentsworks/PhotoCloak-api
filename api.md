@@ -14,9 +14,14 @@ PhotoCloak APIの開発者向けのドキュメントです。
 * [フォトクローク新規作成 API](#フォトクローク新規作成-api)
 * [フォトクローク作成完了 API](#フォトクローク作成完了-api)
 * [フォトクローク削除 API](#フォトクローク削除-api)
-* [フォトクローク確認 API](#フォトクローク確認-api)
+
 * [フォトクローク検索 API](#フォトクローク検索-api)
 * [フォトクローク取得 API](#フォトクローク取得-api)
+* [プライベートクローク確認 API](#プライベートクローク確認-api)
+* [プライベートクローク取得 API](#プライベートクローク取得-api)
+
+* [マイクローク検索 API](#マイクローク検索-api)
+
 * [フォトクロークフォロー追加 API](#フォトクロークフォロー追加-api)
 * [フォトクロークフォロー解除 API](#フォトクロークフォロー解除-api)
 
@@ -194,43 +199,12 @@ HTTP ステータスコードとともに結果を返します。
 |406 (Not Acceptable)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
-## フォトクローク確認 API
-フォトクロークの検索を行います。
-
-### ***Method*** : POST
-### ***Url*** : /api/cloaks/check
-### ***Request***
-* pd : クロークキー・先頭辞
-* no : クロークキー・番号
-
-### ***Response***
-
-```
-{
-    "ScopeType":"0",
-    "CloakID":"0",
-    "Name":"123456790",
-}
-```
-* ScopeType : 公開（0：パブリック／1：プライベート）
-* CloakID [int] : クロークを識別するID※クロークキーではありません。
-* Name : クローク名
-
-| ステータスコード | 意味|エラーコード|
-|:-----------|:------------|:------------|
-|200 (OK)|成功|-|
-|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
-
----
 ## フォトクローク検索 API
 フォトクロークの検索を行います。
 
 ### ***Method*** : POST
 ### ***Url*** : /api/cloaks/search
 ### ***Request***
-* pd : クロークキー・先頭辞
-* no : クロークキー・番号
-* lk : 合言葉
 * tg : タグ(カンマ区切り)
 * s : ソート（limit：タイムリミット／view：閲覧数／new：新着／name：名前）
 
@@ -397,6 +371,211 @@ HTTP ステータスコードとともに結果を返します。
 |:-----------|:------------|:------------|
 |200 (OK)|成功|-|
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+
+---
+## プライベートクローク確認 API
+フォトクロークの検索を行います。
+
+### ***Method*** : POST
+### ***Url*** : /api/cloaks/check
+### ***Request***
+* pd : クロークキー・先頭辞
+* no : クロークキー・番号
+
+### ***Response***
+
+```
+{
+    "ScopeType":"0",
+    "CloakID":"0",
+    "Name":"123456790",
+}
+```
+* ScopeType : 公開（0：パブリック／1：プライベート）
+* CloakID [int] : クロークを識別するID※クロークキーではありません。
+* Name : クローク名
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+
+
+---
+## プライベートクローク取得 API
+フォトクロークの取得を行います。
+
+### ***Method*** : POST
+### ***Url*** : /api/cloaks
+### ***QueryString***
+* pd : クロークキー・先頭辞
+* no : クロークキー・番号
+* lk : 合言葉
+
+### ***Response***
+
+```
+{
+    "Cloak":
+   {
+       "CloakId":"123456790",
+       "MemberID":"123456790",
+       "Name":"123456790",
+       "PrefixCode":"松",
+       "CloakNo":"11",
+       "Status":"0",
+       "WorkSpaceNo":"0",
+       "CreateDatetime":"0",
+       "UpdateDatetime":"0",
+       "CloakSetting":
+      {
+          "CloakID":"0",
+          "ScopeType":"0",
+          "Description":,
+          "CanDownload":,
+          "CanUpload":,
+          "IsAutoExtensionDate":
+      }
+       "Images":[]
+      {
+          "CloakImageID":"0"
+          "CloakID":"0"
+          "CloakSetting":
+          "MyPhotoImageID":"0"
+          "Status":"0"
+          "ExpirationDatetime":"0"
+          "MemberID":"0"
+          "Comment":
+          "ImageName":"0"
+          "ViewCount":"0"
+          "Rotate":
+      }
+       "Tags":[]
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      },
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      }
+}
+```
+* CloakId [int] : クロークID
+* MemberID [int] : 会員ID
+* Name [string] : クローク名
+* PrefixCode [string] : クロークキー・先頭辞
+* CloakNo [int] : クロークキー・番号
+* Status [int] : ステータス
+* WorkSpaceNo [int] : ワークスペース番号
+* CreateDatetime [dateTime] : 作成日時
+* UpdateDatetime [dateTime] : 更新日時
+* ScopeType [int] : 公開（0：パブリック／1：プライベート）
+* Description [int] : 紹介文
+* CanDownload [int] : ダウンロード可否（0：否／1：可）
+* CanUpload [int] : アップロード可否（0：否／1：可）
+* IsAutoExtensionDate [int] : 自動延長（0：無／1：有）
+* CloakImageID [int] : クロークイメージID
+* MyPhotoImageID [int] : マイフォトイメージID
+* ExpirationDatetime [dateTime] : 有効期限
+* Comment [string] : コメント
+* ImageName [string] : イメージ名
+* ViewCount [int] : 閲覧数
+* Rotate [int] : 画像向き
+* Tag [int] : タグ
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+
+---
+## マイクローク検索 API
+マイクロークの検索を行います。
+
+### ***Method*** : POST
+### ***Url*** : /api/cloaks/search/self
+### ***Request***
+* vm : 表示モード（all：すべて／public：公開／private：限定公開／provisional：作成中／follor：フォロー）
+
+### ***Response***
+
+```
+{
+    "Cloak":[]
+   {
+       "CloakId":"123456790",
+       "MemberID":"123456790",
+       "Name":"123456790",
+       "PrefixCode":"松",
+       "CloakNo":"11",
+       "Status":"0",
+       "WorkSpaceNo":"0",
+       "CreateDatetime":"0",
+       "UpdateDatetime":"0",
+       "CloakSetting":
+      {
+          "CloakID":"0",
+          "ScopeType":"0",
+          "Description":,
+          "CanDownload":,
+          "CanUpload":,
+          "IsAutoExtensionDate":
+      }
+       "Images":[]
+      {
+          "CloakImageID":"0"
+          "CloakID":"0"
+          "CloakSetting":
+          "MyPhotoImageID":"0"
+          "Status":"0"
+          "ExpirationDatetime":"0"
+          "MemberID":"0"
+          "Comment":
+          "ImageName":"0"
+          "ViewCount":"0"
+          "Rotate":
+      }
+       "Tags":[]
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      },
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      }
+}
+```
+* HttpStatus [int] : ステータスコード。
+* CloakId [int] : クロークID
+* MemberID [int] : 会員ID
+* Name [string] : クローク名
+* PrefixCode [string] : クロークキー・先頭辞
+* CloakNo [int] : クロークキー・番号
+* Status [int] : ステータス
+* WorkSpaceNo [int] : ワークスペース番号
+* CreateDatetime [dateTime] : 作成日時
+* UpdateDatetime [dateTime] : 更新日時
+* ScopeType [int] : 公開（0：パブリック／1：プライベート）
+* Description [int] : 紹介文
+* CanDownload [int] : ダウンロード可否（0：否／1：可）
+* CanUpload [int] : アップロード可否（0：否／1：可）
+* IsAutoExtensionDate [int] : 自動延長（0：無／1：有）
+* CloakImageID [int] : クロークイメージID
+* MyPhotoImageID [int] : マイフォトイメージID
+* ExpirationDatetime [dateTime] : 有効期限
+* Comment [string] : コメント
+* ImageName [string] : イメージ名
+* ViewCount [int] : 閲覧数
+* Rotate [int] : 画像向き
+* Tag [int] : タグ
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+|401 (Unauthorized)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
 ## フォトクロークフォロー API
