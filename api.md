@@ -226,7 +226,7 @@ HTTP ステータスコードとともに結果を返します。
 フォトクロークの検索を行います。
 
 ### ***Method*** : POST
-### ***Url*** : /api/cloaks/complete
+### ***Url*** : /api/cloaks/search
 ### ***Request***
 * pd : クロークキー・先頭辞
 * no : クロークキー・番号
