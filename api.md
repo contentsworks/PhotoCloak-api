@@ -46,7 +46,7 @@ client_idとclient_secretの取得には、Developersへのご利用登録と利
 ### 認可とアクセストークンの入手
 クライアントプログラムは、事前に発行されたclient_id、client_secretとusername、passwordを利用してアクセストークンを入手します。
 #### ***Method*** : POST
-#### ***Url*** : /oauth2/token
+#### ***Url*** : /api/v2/auth/token
 #### ***Request Header***
 Authorization:に「"Basic " + base64encode(client_id + ":" + client_secret)」を設定します。
 ```
@@ -130,7 +130,7 @@ HTTP ステータスコードとともに結果を返します。
 クローク名と紹介分を登録します。
 
 ### ***Method*** : POST
-### ***Url*** : /api/mycloaks/
+### ***Url*** : /api/v2/mycloaks/
 ### ***Request***
 * nm : クローク名
 * dc : 紹介分
@@ -156,7 +156,7 @@ HTTP ステータスコードとともに結果を返します。
 クロークの各種設定を行います。
 
 ### ***Method*** : POST
-### ***Url*** : /api/mycloaks/complete
+### ***Url*** : /api/v2/mycloaks/complete
 ### ***Request***
 * ci : クロークID
 * sc : 公開（0：パブリック／1：プライベート）
@@ -184,7 +184,7 @@ HTTP ステータスコードとともに結果を返します。
 フォトクロークの削除を行います。
 
 ### ***Method*** : POST
-### ***Url*** : /api/mycloaks/delete
+### ***Url*** : /api/v2/mycloaks/delete
 ### ***Request***
 * ci : クロークID
 
@@ -202,7 +202,7 @@ HTTP ステータスコードとともに結果を返します。
 マイクローク一覧の取得を行います。
 
 ### ***Method*** : POST
-### ***Url*** : /api/mycloaks/list
+### ***Url*** : /api/v2/mycloaks/list
 ### ***Request***
 * vm : 表示モード（all：すべて／public：公開／private：限定公開／provisional：作成中／follor：フォロー）
 
@@ -290,7 +290,7 @@ HTTP ステータスコードとともに結果を返します。
 フォトクロークのフォローを行います。
 
 ### ***Method*** : POST
-### ***Url*** : /api/mycloaks/addfollow
+### ***Url*** : /api/v2/mycloaks/addfollow
 ### ***Request***
 * ci : クロークID
 
@@ -307,7 +307,7 @@ HTTP ステータスコードとともに結果を返します。
 フォトクロークのフォロー解除を行います。
 
 ### ***Method*** : POST
-### ***Url*** : /api/mycloaks/delfollow
+### ***Url*** : /api/v2/mycloaks/delfollow
 ### ***Request***
 * ci : クロークID
 
@@ -324,7 +324,7 @@ HTTP ステータスコードとともに結果を返します。
 フォトクロークの検索を行います。
 
 ### ***Method*** : GET
-### ***Url*** : /api/cloaks/search
+### ***Url*** : /api/v2/cloaks/search
 ### ***Request***
 * tg : タグ(カンマ区切り)
 * s : ソート（limit：タイムリミット／view：閲覧数／new：新着／name：名前）
@@ -412,7 +412,7 @@ HTTP ステータスコードとともに結果を返します。
 フォトクロークの取得を行います。
 
 ### ***Method*** : GET
-### ***Url*** : /api/cloaks
+### ***Url*** : /api/v2/cloaks
 ### ***QueryString***
 * ci : クロークID
 
@@ -498,7 +498,7 @@ HTTP ステータスコードとともに結果を返します。
 フォトクロークの検索を行います。
 
 ### ***Method*** : GET
-### ***Url*** : /api/cloaks/check
+### ***Url*** : /api/v2/cloaks/check
 ### ***Request***
 * pd : クロークキー・先頭辞
 * no : クロークキー・番号
@@ -527,7 +527,7 @@ HTTP ステータスコードとともに結果を返します。
 フォトクロークの取得を行います。
 
 ### ***Method*** : POST
-### ***Url*** : /api/cloaks/
+### ***Url*** : /api/v2/cloaks/
 ### ***QueryString***
 * ci : クロークID
 * lk : 合言葉
@@ -614,7 +614,7 @@ HTTP ステータスコードとともに結果を返します。
 画像の取得を行います。  
 
 ### ***Method*** : GET
-### ***Url*** : /api/photos
+### ***Url*** : /api/v2/photos
 ### ***Request***
 * ci : クロークID
 * cd : クロークイメージID
@@ -633,7 +633,7 @@ HTTP ステータスコードとともに結果を返します。
 画像のアップロードのみを行います。  
 
 ### ***Method*** : POST
-### ***Url*** : /api/photos
+### ***Url*** : /api/v2/photos
 ### ***Request***
 * ci : クロークID
 
@@ -652,7 +652,7 @@ HTTP ステータスコードとともに結果を返します。
 ---
 ## 画像ダウンロード API
 ### ***Method*** : GET
-### ***Url*** : /api/photos/export
+### ***Url*** : /api/v2/photos/export
 ### ***QueryString***
 * ci : クロークID
 * cd : クロークイメージID
@@ -675,7 +675,7 @@ HTTP ステータスコードとともに結果を返します。
 ---
 ## 画像削除 API
 ### ***Method*** : POST
-### ***Url*** : /api/photos/delete
+### ***Url*** : /api/v2/photos/delete
 ### ***Request***
 * ci : クロークID
 * cd : クロークイメージID
@@ -693,7 +693,7 @@ HTTP ステータスコードとともに結果を返します。
 ---
 ## 画像閲覧カウントアップ API
 ### ***Method*** : POST
-### ***Url*** : /api/photos/look
+### ***Url*** : /api/v2/photos/look
 ### ***Request***
 * cd : クロークイメージID
 
