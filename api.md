@@ -328,6 +328,8 @@ HTTP ステータスコードとともに結果を返します。
 ### ***Request***
 * tg : タグ(カンマ区切り)
 * s : ソート（limit：タイムリミット／view：閲覧数／new：新着／name：名前）
+* os : OFFSET（開始位置）※デフォルト：0
+* li : LIMIT（限度数）
 
 ### ***Response***
 
