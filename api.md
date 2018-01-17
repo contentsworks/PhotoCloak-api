@@ -219,6 +219,9 @@ HTTP ステータスコードとともに結果を返します。
        "CloakNo":"11",
        "Status":"0",
        "WorkSpaceNo":"0",
+       "ExpirationDatetime":"0",
+       "ViewCount":"0",
+       "NoImageUrl":"",
        "CreateDatetime":"0",
        "UpdateDatetime":"0",
        "CloakSetting":
@@ -263,6 +266,7 @@ HTTP ステータスコードとともに結果を返します。
 * CloakNo [int] : クロークキー・番号
 * Status [int] : ステータス
 * WorkSpaceNo [int] : ワークスペース番号
+* NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
 * ScopeType [int] : 公開（0：パブリック／1：プライベート）
@@ -344,6 +348,9 @@ HTTP ステータスコードとともに結果を返します。
        "CloakNo":"11",
        "Status":"0",
        "WorkSpaceNo":"0",
+       "ExpirationDatetime":"0",
+       "ViewCount":"0",
+       "NoImageUrl":"",
        "CreateDatetime":"0",
        "UpdateDatetime":"0",
        "CloakSetting":
@@ -388,6 +395,7 @@ HTTP ステータスコードとともに結果を返します。
 * CloakNo [int] : クロークキー・番号
 * Status [int] : ステータス
 * WorkSpaceNo [int] : ワークスペース番号
+* NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
 * ScopeType [int] : 公開（0：パブリック／1：プライベート）
@@ -431,6 +439,9 @@ HTTP ステータスコードとともに結果を返します。
        "CloakNo":"11",
        "Status":"0",
        "WorkSpaceNo":"0",
+       "ExpirationDatetime":"0",
+       "ViewCount":"0",
+       "NoImageUrl":"",
        "CreateDatetime":"0",
        "UpdateDatetime":"0",
        "CloakSetting":
@@ -474,6 +485,7 @@ HTTP ステータスコードとともに結果を返します。
 * CloakNo [int] : クロークキー・番号
 * Status [int] : ステータス
 * WorkSpaceNo [int] : ワークスペース番号
+* NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
 * ScopeType [int] : 公開（0：パブリック／1：プライベート）
@@ -518,6 +530,9 @@ HTTP ステータスコードとともに結果を返します。
        "CloakNo":"11",
        "Status":"0",
        "WorkSpaceNo":"0",
+       "ExpirationDatetime":"0",
+       "ViewCount":"0",
+       "NoImageUrl":"",
        "CreateDatetime":"0",
        "UpdateDatetime":"0",
        "CloakSetting":
@@ -561,6 +576,7 @@ HTTP ステータスコードとともに結果を返します。
 * CloakNo [int] : クロークキー・番号
 * Status [int] : ステータス
 * WorkSpaceNo [int] : ワークスペース番号
+* NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
 * ScopeType [int] : 公開（0：パブリック／1：プライベート）
