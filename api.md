@@ -267,7 +267,7 @@ HTTP ステータスコードとともに結果を返します。
 * Name [string] : クローク名
 * PrefixCode [string] : クロークキー・先頭辞
 * CloakNo [int] : クロークキー・番号
-* Status [int] : ステータス
+* Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
@@ -397,7 +397,7 @@ HTTP ステータスコードとともに結果を返します。
 * Name [string] : クローク名
 * PrefixCode [string] : クロークキー・先頭辞
 * CloakNo [int] : クロークキー・番号
-* Status [int] : ステータス
+* Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
@@ -488,7 +488,7 @@ HTTP ステータスコードとともに結果を返します。
 * Name [string] : クローク名
 * PrefixCode [string] : クロークキー・先頭辞
 * CloakNo [int] : クロークキー・番号
-* Status [int] : ステータス
+* Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
@@ -580,7 +580,7 @@ HTTP ステータスコードとともに結果を返します。
 * Name [string] : クローク名
 * PrefixCode [string] : クロークキー・先頭辞
 * CloakNo [int] : クロークキー・番号
-* Status [int] : ステータス
+* Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
