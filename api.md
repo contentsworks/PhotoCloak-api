@@ -1,4 +1,4 @@
-# PhotoCloak API仕様 ver 0.0.1
+# PhotoCloak API仕様 ver 1.0.1
 
 PhotoCloak APIの開発者向けのドキュメントです。
 
@@ -21,7 +21,8 @@ PhotoCloak APIの開発者向けのドキュメントです。
 * [フォトクローク検索 API](#フォトクローク検索-api)
 * [フォトクローク取得 API](#フォトクローク取得-api)
 * [フォトクローク詳細 API](#フォトクローク詳細-api)
-* [プライベートクローク確認 API](#プライベートクローク確認-api)
+* [フォトクローク確認 API](#フォトクローク確認-api)
+* [フォトクロークトークン取得 API](#フォトクロークトークン取得-api)
 
 ### 画像
 * [画像取得 API](#画像取得-api)
@@ -30,15 +31,19 @@ PhotoCloak APIの開発者向けのドキュメントです。
 * [画像削除 API](#画像削除-api)
 * [画像閲覧カウントアップ API](#画像閲覧カウントアップ-api)
 
+### アカウント
+* [アカウント取得 API](#アカウント取得-api)
+* [アカウント更新 API](#アカウント更新-api)
+
 ---
 ## 認証 API
-認証を有する各種APIを利用するためには、OAuth2.0により規定された認可を行い事前にアクセストークンを取得します。  
+認証を有する各種APIを利用するためには、OAuth2.0により規定された認可を行い事前にアクセストークンを取得します。  
 API呼び出しの際、Authorizationヘッダーでアクセストークンを送信して認証します。
 
 ### 事前に必要なもの
 認証認可を行うためには、以下の情報を事前に入手している必要があります。
-* client_id　: 弊社にて発行するクライアントID
-* client_secret　: 弊社にて発行するクライアントSecretキー
+* client_id : 弊社にて発行するクライアントID
+* client_secret : 弊社にて発行するクライアントSecretキー
 
 client_idとclient_secretの取得には、Developersへのご利用登録と利用申請が必要です。
 弊社APIサービスサポート窓口へご連絡ください。
@@ -58,9 +63,9 @@ Content-Type: application/x-www-form-urlencoded
 ##### ***username+password***
 grant_typeとusername、passwordを指定してください。
 
-* grant_type [string]　: password固定
-* username [string]　: ユーザーID（Email）
-* password [string]　: パスワード
+* grant_type [string] : password固定
+* username [string] : ユーザーID（Email）
+* password [string] : パスワード
 
 #### ***Response (OK)***
 ```
@@ -71,10 +76,10 @@ grant_typeとusername、passwordを指定してください。
     "refresh_token": "a7949da3309848368e27b51b6039841f",
 }
 ```
-* access_token [string]　: 弊社サーバーが発行するアクセストークン
-* token_type [string]　: トークンタイプ(bearer)
-* expires_in [number]　: アクセストークンの有効期間を表す秒数
-* refresh_token [string]　: 弊社サーバーが発行するリフレッシュトークン
+* access_token [string] : 弊社サーバーが発行するアクセストークン
+* token_type [string] : トークンタイプ(bearer)
+* expires_in [number] : アクセストークンの有効期間を表す秒数
+* refresh_token [string] : 弊社サーバーが発行するリフレッシュトークン
 
 #### ***Response (Bad Request)***
 ```
@@ -139,7 +144,7 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "CloakId":"123456790"
+    "CloakId":"123456790"
 }
 ```
 * CloakId [int] : クロークを識別するID※クロークキーではありません。
@@ -170,7 +175,7 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "CloakId":"123456790"
+    "CloakId":"123456790"
 }
 ```
 * CloakId [int] : クロークを識別するID※クロークキーではありません。
@@ -212,53 +217,53 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "Cloak":[]
-   {
-       "CloakId":"123456790",
-       "MemberID":"123456790",
-       "Name":"123456790",
-       "PrefixCode":"ume",
-       "PrefixName":"梅",
-       "CloakNo":"11",
-       "Status":"0",
-       "WorkSpaceNo":"0",
+    "Cloak":[]
+   {
+       "CloakId":"123456790",
+       "MemberID":"123456790",
+       "Name":"123456790",
+       "PrefixCode":"ume",
+       "PrefixName":"梅",
+       "CloakNo":"11",
+       "Status":"0",
+       "WorkSpaceNo":"0",
        "ExpirationDatetime":"0",
        "ViewCount":"0",
        "NoImageUrl":"",
-       "CreateDatetime":"0",
-       "UpdateDatetime":"0",
-       "CloakSetting":
-      {
-          "CloakID":"0",
-          "ScopeType":"0",
-          "Description":,
-          "CanDownload":,
-          "CanUpload":,
-          "IsAutoExtensionDate":
-      }
-       "Images":[]
-      {
-          "CloakImageID":"0"
-          "CloakID":"0"
-          "CloakSetting":
-          "MyPhotoImageID":"0"
-          "Status":"0"
-          "ExpirationDatetime":"0"
-          "MemberID":"0"
-          "Comment":
-          "ImageName":"0"
-          "ViewCount":"0"
-          "Rotate":
-      }
-       "Tags":[]
-      {
-          "CloakID":"0",
-          "Tag":"0"
-      },
-      {
-          "CloakID":"0",
-          "Tag":"0"
-      }
+       "CreateDatetime":"0",
+       "UpdateDatetime":"0",
+       "CloakSetting":
+      {
+          "CloakID":"0",
+          "ScopeType":"0",
+          "Description":,
+          "CanDownload":,
+          "CanUpload":,
+          "IsAutoExtensionDate":
+      }
+       "Images":[]
+      {
+          "CloakImageID":"0"
+          "CloakID":"0"
+          "CloakSetting":
+          "MyPhotoImageID":"0"
+          "Status":"0"
+          "ExpirationDatetime":"0"
+          "MemberID":"0"
+          "Comment":
+          "ImageName":"0"
+          "ViewCount":"0"
+          "Rotate":
+      }
+       "Tags":[]
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      },
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      }
 }
 ```
 * HttpStatus [int] : ステータスコード。
@@ -272,7 +277,7 @@ HTTP ステータスコードとともに結果を返します。
 * NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
-* ScopeType [int] : 公開（0：パブリック／1：プライベート）
+* ScopeType [int] : 公開（0：合言葉なし／1：合言葉あり）
 * Description [int] : 紹介文
 * CanDownload [int] : ダウンロード可否（0：否／1：可）
 * CanUpload [int] : アップロード可否（0：否／1：可）
@@ -342,53 +347,53 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "Cloak":[]
-   {
-       "CloakId":"123456790",
-       "MemberID":"123456790",
-       "Name":"123456790",
-       "PrefixCode":"ume",
+    "Cloak":[]
+   {
+       "CloakId":"123456790",
+       "MemberID":"123456790",
+       "Name":"123456790",
+       "PrefixCode":"ume",
        "PrefixName":"梅",
-       "CloakNo":"11",
-       "Status":"0",
-       "WorkSpaceNo":"0",
+       "CloakNo":"11",
+       "Status":"0",
+       "WorkSpaceNo":"0",
        "ExpirationDatetime":"0",
        "ViewCount":"0",
        "NoImageUrl":"",
-       "CreateDatetime":"0",
-       "UpdateDatetime":"0",
-       "CloakSetting":
-      {
-          "CloakID":"0",
-          "ScopeType":"0",
-          "Description":,
-          "CanDownload":,
-          "CanUpload":,
-          "IsAutoExtensionDate":
-      }
-       "Images":[]
-      {
-          "CloakImageID":"0"
-          "CloakID":"0"
-          "CloakSetting":
-          "MyPhotoImageID":"0"
-          "Status":"0"
-          "ExpirationDatetime":"0"
-          "MemberID":"0"
-          "Comment":
-          "ImageName":"0"
-          "ViewCount":"0"
-          "Rotate":
-      }
-       "Tags":[]
-      {
-          "CloakID":"0",
-          "Tag":"0"
-      },
-      {
-          "CloakID":"0",
-          "Tag":"0"
-      }
+       "CreateDatetime":"0",
+       "UpdateDatetime":"0",
+       "CloakSetting":
+      {
+          "CloakID":"0",
+          "ScopeType":"0",
+          "Description":,
+          "CanDownload":,
+          "CanUpload":,
+          "IsAutoExtensionDate":
+      }
+       "Images":[]
+      {
+          "CloakImageID":"0"
+          "CloakID":"0"
+          "CloakSetting":
+          "MyPhotoImageID":"0"
+          "Status":"0"
+          "ExpirationDatetime":"0"
+          "MemberID":"0"
+          "Comment":
+          "ImageName":"0"
+          "ViewCount":"0"
+          "Rotate":
+      }
+       "Tags":[]
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      },
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      }
 }
 ```
 * HttpStatus [int] : ステータスコード。
@@ -402,7 +407,7 @@ HTTP ステータスコードとともに結果を返します。
 * NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
-* ScopeType [int] : 公開（0：パブリック／1：プライベート）
+* ScopeType [int] : 公開（0：合言葉あり／1：合言葉なし）
 * Description [int] : 紹介文
 * CanDownload [int] : ダウンロード可否（0：否／1：可）
 * CanUpload [int] : アップロード可否（0：否／1：可）
@@ -434,53 +439,53 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "Cloak":
-   {
-       "CloakId":"123456790",
-       "MemberID":"123456790",
-       "Name":"123456790",
-       "PrefixCode":"ume",
+    "Cloak":
+   {
+       "CloakId":"123456790",
+       "MemberID":"123456790",
+       "Name":"123456790",
+       "PrefixCode":"ume",
        "PrefixName":"梅",
-       "CloakNo":"11",
-       "Status":"0",
-       "WorkSpaceNo":"0",
+       "CloakNo":"11",
+       "Status":"0",
+       "WorkSpaceNo":"0",
        "ExpirationDatetime":"0",
        "ViewCount":"0",
        "NoImageUrl":"",
-       "CreateDatetime":"0",
-       "UpdateDatetime":"0",
-       "CloakSetting":
-      {
-          "CloakID":"0",
-          "ScopeType":"0",
-          "Description":,
-          "CanDownload":,
-          "CanUpload":,
-          "IsAutoExtensionDate":
-      }
-       "Images":[]
-      {
-          "CloakImageID":"0"
-          "CloakID":"0"
-          "CloakSetting":
-          "MyPhotoImageID":"0"
-          "Status":"0"
-          "ExpirationDatetime":"0"
-          "MemberID":"0"
-          "Comment":
-          "ImageName":"0"
-          "ViewCount":"0"
-          "Rotate":
-      }
-       "Tags":[]
-      {
-          "CloakID":"0",
-          "Tag":"0"
-      },
-      {
-          "CloakID":"0",
-          "Tag":"0"
-      }
+       "CreateDatetime":"0",
+       "UpdateDatetime":"0",
+       "CloakSetting":
+      {
+          "CloakID":"0",
+          "ScopeType":"0",
+          "Description":,
+          "CanDownload":,
+          "CanUpload":,
+          "IsAutoExtensionDate":
+      }
+       "Images":[]
+      {
+          "CloakImageID":"0"
+          "CloakID":"0"
+          "CloakSetting":
+          "MyPhotoImageID":"0"
+          "Status":"0"
+          "ExpirationDatetime":"0"
+          "MemberID":"0"
+          "Comment":
+          "ImageName":"0"
+          "ViewCount":"0"
+          "Rotate":
+      }
+       "Tags":[]
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      },
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      }
 }
 ```
 * CloakId [int] : クロークID
@@ -493,7 +498,7 @@ HTTP ステータスコードとともに結果を返します。
 * NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
-* ScopeType [int] : 公開（0：パブリック／1：プライベート）
+* ScopeType [int] : 公開（0：合言葉なし／1：合言葉あり）
 * Description [int] : 紹介文
 * CanDownload [int] : ダウンロード可否（0：否／1：可）
 * CanUpload [int] : アップロード可否（0：否／1：可）
@@ -526,53 +531,53 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "Cloak":
-   {
-       "CloakId":"123456790",
-       "MemberID":"123456790",
-       "Name":"123456790",
-       "PrefixCode":"ume",
+    "Cloak":
+   {
+       "CloakId":"123456790",
+       "MemberID":"123456790",
+       "Name":"123456790",
+       "PrefixCode":"ume",
        "PrefixName":"梅",
-       "CloakNo":"11",
-       "Status":"0",
-       "WorkSpaceNo":"0",
+       "CloakNo":"11",
+       "Status":"0",
+       "WorkSpaceNo":"0",
        "ExpirationDatetime":"0",
        "ViewCount":"0",
        "NoImageUrl":"",
-       "CreateDatetime":"0",
-       "UpdateDatetime":"0",
-       "CloakSetting":
-      {
-          "CloakID":"0",
-          "ScopeType":"0",
-          "Description":,
-          "CanDownload":,
-          "CanUpload":,
-          "IsAutoExtensionDate":
-      }
-       "Images":[]
-      {
-          "CloakImageID":"0"
-          "CloakID":"0"
-          "CloakSetting":
-          "MyPhotoImageID":"0"
-          "Status":"0"
-          "ExpirationDatetime":"0"
-          "MemberID":"0"
-          "Comment":
-          "ImageName":"0"
-          "ViewCount":"0"
-          "Rotate":
-      }
-       "Tags":[]
-      {
-          "CloakID":"0",
-          "Tag":"0"
-      },
-      {
-          "CloakID":"0",
-          "Tag":"0"
-      }
+       "CreateDatetime":"0",
+       "UpdateDatetime":"0",
+       "CloakSetting":
+      {
+          "CloakID":"0",
+          "ScopeType":"0",
+          "Description":,
+          "CanDownload":,
+          "CanUpload":,
+          "IsAutoExtensionDate":
+      }
+       "Images":[]
+      {
+          "CloakImageID":"0"
+          "CloakID":"0"
+          "CloakSetting":
+          "MyPhotoImageID":"0"
+          "Status":"0"
+          "ExpirationDatetime":"0"
+          "MemberID":"0"
+          "Comment":
+          "ImageName":"0"
+          "ViewCount":"0"
+          "Rotate":
+      }
+       "Tags":[]
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      },
+      {
+          "CloakID":"0",
+          "Tag":"0"
+      }
 }
 ```
 * CloakId [int] : クロークID
@@ -585,7 +590,7 @@ HTTP ステータスコードとともに結果を返します。
 * NoImageUrl [string] : 写真なしイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
-* ScopeType [int] : 公開（0：パブリック／1：プライベート）
+* ScopeType [int] : 公開（0：合言葉なし／1：合言葉あり）
 * Description [int] : 紹介文
 * CanDownload [int] : ダウンロード可否（0：否／1：可）
 * CanUpload [int] : アップロード可否（0：否／1：可）
@@ -605,8 +610,8 @@ HTTP ステータスコードとともに結果を返します。
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
-## プライベートクローク確認 API
-フォトクロークの検索を行います。
+## フォトクローク確認 API
+フォトクロークの存在確認を行います。
 
 ### ***Method*** : GET
 ### ***Url*** : /api/v2/cloaks/check
@@ -618,12 +623,12 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "ScopeType":"0",
-    "CloakID":"0",
-    "Name":"123456790",
+    "ScopeType":"0",
+    "CloakID":"0",
+    "Name":"123456790",
 }
 ```
-* ScopeType : 公開（0：パブリック／1：プライベート）
+* ScopeType : 公開（0：合言葉なし／1：合言葉あり）
 * CloakID [int] : クロークを識別するID※クロークキーではありません。
 * Name : クローク名
 * IsLock : 合言葉有無（true：あり／false：なし）
@@ -635,7 +640,7 @@ HTTP ステータスコードとともに結果を返します。
 
 ---
 ## 画像取得 API
-画像の取得を行います。  
+画像の取得を行います。  
 
 ### ***Method*** : GET
 ### ***Url*** : /api/v2/photos
@@ -728,3 +733,45 @@ HTTP ステータスコードとともに結果を返します。
 |200 (OK)|成功|-|
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
 |404 (Not Found)|〇〇〇〇〇が●●●●●です|*****_*****|
+
+---
+## アカウント取得 API
+アカウントの取得を行います。  
+
+### ***Method*** : GET
+### ***Url*** : api/v2/account
+
+### ***Response***
+
+```
+{
+    "AccountName":"0",
+    "Email":"0",
+    "MaxCloakCount":"3",
+}
+```
+* AccountName : アカウント名／ニックネーム
+* Email : メールアドレス
+* MaxCloakCount [int] : 最大レンタル可能数
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+
+
+---
+## アカウント更新 API
+アカウントの更新を行います。  
+
+### ***Method*** : POST
+### ***Url*** : api/v2/account/update
+### ***Request***
+* an : アカウント名・ニックネーム
+* cd : クロークイメージID
+
+### ***Response***
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
