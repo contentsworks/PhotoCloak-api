@@ -18,11 +18,14 @@ PhotoCloak APIの開発者向けのドキュメントです。
 * [フォトクロークフォロー追加 API](#フォトクロークフォロー追加-api)
 * [フォトクロークフォロー解除 API](#フォトクロークフォロー解除-api)
 
+* [フォトクロークトークン取得 API](#フォトクロークトークン取得-api)
+
+* [フォトクローク確認 API](#フォトクローク確認-api)
 * [フォトクローク検索 API](#フォトクローク検索-api)
 * [フォトクローク取得 API](#フォトクローク取得-api)
 * [フォトクローク詳細 API](#フォトクローク詳細-api)
-* [フォトクローク確認 API](#フォトクローク確認-api)
-* [フォトクロークトークン取得 API](#フォトクロークトークン取得-api)
+
+* [フォトクロークプレフィックス取得 API](#フォトクロークプレフィックス取得-api)
 
 ### 画像
 * [画像取得 API](#画像取得-api)
@@ -147,7 +150,7 @@ HTTP ステータスコードとともに結果を返します。
     "CloakId":"123456790"
 }
 ```
-* CloakId [int] : クロークを識別するID※クロークキーではありません。
+* CloakId [int] : クロークを識別するID※クローク番号ではありません。
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
@@ -178,7 +181,7 @@ HTTP ステータスコードとともに結果を返します。
     "CloakId":"123456790"
 }
 ```
-* CloakId [int] : クロークを識別するID※クロークキーではありません。
+* CloakId [int] : クロークを識別するID※クローク番号ではありません。
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
@@ -270,8 +273,8 @@ HTTP ステータスコードとともに結果を返します。
 * CloakId [int] : クロークID
 * MemberID [int] : 会員ID
 * Name [string] : クローク名
-* PrefixCode [string] : クロークキー・先頭辞
-* CloakNo [int] : クロークキー・番号
+* PrefixCode [string] : クローク番号・先頭辞
+* CloakNo [int] : クローク番号・番号
 * Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
@@ -332,13 +335,41 @@ HTTP ステータスコードとともに結果を返します。
 |406 (Not Acceptable)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
+## フォトクローク確認 API
+フォトクロークの存在確認を行います。
+
+### ***Method*** : GET
+### ***Url*** : /api/v2/cloaks/check
+### ***Request***
+* pd : クローク番号・先頭辞
+* no : クローク番号・番号
+
+### ***Response***
+
+```
+{
+    "ScopeType":"0",
+    "CloakID":"0",
+    "Name":"123456790",
+}
+```
+* ScopeType : 公開（0：合言葉なし／1：合言葉あり）
+* CloakID [int] : クロークを識別するID※クローク番号ではありません。
+* Name : クローク名
+
+| ステータスコード | 意味|エラーコード|
+|:-----------|:------------|:------------|
+|200 (OK)|成功|-|
+|400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
+
+---
 ## フォトクローク検索 API
 フォトクロークの検索を行います。
 
 ### ***Method*** : GET
 ### ***Url*** : /api/v2/cloaks/search
 ### ***Request***
-* tg : タグ(カンマ区切り)
+* tg : タグ・フリーワード
 * s : ソート（limit：タイムリミット／view：閲覧数／new：新着／name：名前）
 * os : OFFSET（開始位置）※デフォルト：0
 * li : LIMIT（限度数）
@@ -400,8 +431,8 @@ HTTP ステータスコードとともに結果を返します。
 * CloakId [int] : クロークID
 * MemberID [int] : 会員ID
 * Name [string] : クローク名
-* PrefixCode [string] : クロークキー・先頭辞
-* CloakNo [int] : クロークキー・番号
+* PrefixCode [string] : クローク番号・先頭辞
+* CloakNo [int] : クローク番号・番号
 * Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
@@ -491,8 +522,8 @@ HTTP ステータスコードとともに結果を返します。
 * CloakId [int] : クロークID
 * MemberID [int] : 会員ID
 * Name [string] : クローク名
-* PrefixCode [string] : クロークキー・先頭辞
-* CloakNo [int] : クロークキー・番号
+* PrefixCode [string] : クローク番号・先頭辞
+* CloakNo [int] : クローク番号・番号
 * Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
@@ -583,8 +614,8 @@ HTTP ステータスコードとともに結果を返します。
 * CloakId [int] : クロークID
 * MemberID [int] : 会員ID
 * Name [string] : クローク名
-* PrefixCode [string] : クロークキー・先頭辞
-* CloakNo [int] : クロークキー・番号
+* PrefixCode [string] : クローク番号・先頭辞
+* CloakNo [int] : クローク番号・番号
 * Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
@@ -610,28 +641,27 @@ HTTP ステータスコードとともに結果を返します。
 |400 (Bad Request)|〇〇〇〇〇が●●●●●です|*****_*****|
 
 ---
-## フォトクローク確認 API
-フォトクロークの存在確認を行います。
+## フォトクロークプレフィックス取得 API
+クローク番号のプレフィックス取得を行います。
 
 ### ***Method*** : GET
-### ***Url*** : /api/v2/cloaks/check
-### ***Request***
-* pd : クロークキー・先頭辞
-* no : クロークキー・番号
+### ***Url*** : /api/v2/cloaks/prefix
 
 ### ***Response***
 
 ```
 {
-    "ScopeType":"0",
-    "CloakID":"0",
-    "Name":"123456790",
+    "Prefixs":[]
+    {
+        "Name":"梅"
+        "Code":"ume",
+    }
+    "MaxCloakNo":"99",
 }
 ```
-* ScopeType : 公開（0：合言葉なし／1：合言葉あり）
-* CloakID [int] : クロークを識別するID※クロークキーではありません。
-* Name : クローク名
-* IsLock : 合言葉有無（true：あり／false：なし）
+* Name : クローク番号・先頭辞名
+* Code : クローク番号・先頭辞コード
+* MaxCloakNo [int] : クローク番号・番号最大数
 
 | ステータスコード | 意味|エラーコード|
 |:-----------|:------------|:------------|
