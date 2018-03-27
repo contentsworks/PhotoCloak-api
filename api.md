@@ -230,6 +230,7 @@ HTTP ステータスコードとともに結果を返します。
        "ExpirationDatetime":"0",
        "ViewCount":"0",
        "NoImageUrl":"",
+       "LockImageUrl":"",
        "CreateDatetime":"0",
        "UpdateDatetime":"0",
        "CloakSetting":
@@ -275,6 +276,7 @@ HTTP ステータスコードとともに結果を返します。
 * Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
+* LockImageUrl [string] : 合言葉ありイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
 * ScopeType [int] : 公開（0：合言葉なし／1：合言葉あり）
@@ -416,6 +418,7 @@ HTTP ステータスコードとともに結果を返します。
        "ExpirationDatetime":"0",
        "ViewCount":"0",
        "NoImageUrl":"",
+       "LockImageUrl":"",
        "CreateDatetime":"0",
        "UpdateDatetime":"0",
        "CloakSetting":
@@ -461,6 +464,7 @@ HTTP ステータスコードとともに結果を返します。
 * Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
+* LockImageUrl [string] : 合言葉ありイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
 * ScopeType [int] : 公開（0：合言葉あり／1：合言葉なし）
@@ -508,6 +512,7 @@ HTTP ステータスコードとともに結果を返します。
        "ExpirationDatetime":"0",
        "ViewCount":"0",
        "NoImageUrl":"",
+       "LockImageUrl":"",
        "CreateDatetime":"0",
        "UpdateDatetime":"0",
        "CloakSetting":
@@ -552,6 +557,7 @@ HTTP ステータスコードとともに結果を返します。
 * Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
+* LockImageUrl [string] : 合言葉ありイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
 * ScopeType [int] : 公開（0：合言葉なし／1：合言葉あり）
@@ -600,6 +606,7 @@ HTTP ステータスコードとともに結果を返します。
        "ExpirationDatetime":"0",
        "ViewCount":"0",
        "NoImageUrl":"",
+       "LockImageUrl":"",
        "CreateDatetime":"0",
        "UpdateDatetime":"0",
        "CloakSetting":
@@ -644,6 +651,7 @@ HTTP ステータスコードとともに結果を返します。
 * Status [int] : 公開ステータス（0：作成中／1：公開／8：一時停止）
 * WorkSpaceNo [int] : ワークスペース番号
 * NoImageUrl [string] : 写真なしイメージパス
+* LockImageUrl [string] : 合言葉ありイメージパス
 * CreateDatetime [dateTime] : 作成日時
 * UpdateDatetime [dateTime] : 更新日時
 * ScopeType [int] : 公開（0：合言葉なし／1：合言葉あり）
