@@ -533,7 +533,8 @@ HTTP ステータスコードとともに結果を返します。
           "CloakImageID":"0"
           "CloakID":"0"
           "CloakSetting":
-          "MyPhotoImageID":"0"
+
+"MyPhotoImageID":"0"
           "Status":"0"
           "ExpirationDatetime":"0"
           "MemberID":"0"
@@ -586,6 +587,8 @@ HTTP ステータスコードとともに結果を返します。
 ---
 ## フォトクローク詳細 API
 フォトクロークの取得を行います。
+※本APIは使用しないでください。  
+　フォトクロークトークン取得APIとフォトクローク取得APIを使用してください。
 
 ### ***Method*** : POST
 ### ***Url*** : /api/v2/cloaks/detail/
