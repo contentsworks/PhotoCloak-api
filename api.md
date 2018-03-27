@@ -745,8 +745,8 @@ HTTP ステータスコードとともに結果を返します。
 
 ```
 {
-    "AccountName":"0",
-    "Email":"0",
+    "AccountName":"海山太郎",
+    "Email":"umiyama@contentsworks.co.jp",
     "MaxCloakCount":"3",
 }
 ```
